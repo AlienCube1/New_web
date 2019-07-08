@@ -1,8 +1,8 @@
 <?php
 
 include_once('config.php');
-
-if(isset($_POST['submit'])) {
+//submit
+if(isset($_POST['prijava'])) {
 
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -31,6 +31,6 @@ if($pdo) {
 			}
 		}
 		}
-
+ 
 }
 ?>
