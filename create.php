@@ -26,6 +26,7 @@ function insert($username, $password, $email, $code) {
 function check_avail($username, $email){
 	global $pdo;
 	global $okay;
+	global $password;
 	$exists = "SELECT username FROM login WHERE username =:username OR email =:email";
 	$exists_stmt = $pdo->prepare($exists);
 	$exists_stmt->execute(['username' => $username, 'email' =>$email]);

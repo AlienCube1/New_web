@@ -9,9 +9,9 @@ class user {
 	function get_pic($image, $user_id) {
 		$this->image = $image;
 		$this->user_id = $user_id;
-
 	}
 	function upload(){
+		global $pdo;
 		$sql = 'INSERT INTO picture(image, user_id) VALUES (:image, :user_id)';
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(["image"=>$this->image, "user_id"=>$this->user_id]);
@@ -30,13 +30,14 @@ function get_user($username){
 	}
 	}
 
-#$new_upload = new user($image_file, $user_id);
-$x = get_user("Marcel");
-echo $x;
-/*session_start();
+session_start();
 
 $is_logged_in = $_SESSION['loggedin'];
 $username = $_SESSION['username'];
+
+$userId = get_user($username);
+$new_upload = new user($image_file, $userId);
+/*
 
 //// Loop to check which button is pressed 
 if($is_logged_in == true) {

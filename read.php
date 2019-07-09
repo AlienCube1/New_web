@@ -7,12 +7,14 @@ if(isset($_POST['prijava'])) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 $hashed = md5($password);
+#echo $hashed;
 //// select from db
 if($pdo) {
 	$get_user = "SELECT username,password FROM login WHERE username =:username && password =:password";
 	$stmt = $pdo->prepare($get_user);
 	$stmt->execute(['username' => $username, 'password' => $hashed]);
 	$post = $stmt->fetchAll();
+	var_dump($post);
 	//// if info correct  set session and cookies accordingly
 	if($post) {
 		session_start();
@@ -21,14 +23,16 @@ if($pdo) {
 		if(!empty($_POST["remember"])) {
 			setcookie ("username",$_POST["username"],time()+ 3600);
 			setcookie ("password",$_POST["password"],time()+ 3600);
+			header("location:index.php");
 			} 
 		else {
 			setcookie("username","");
 			setcookie("password","");
-		}	
-		if($_SESSION['loggedin']){
 			header("location:index.php");
-			}
+		}	
+		
+			
+			
 		}
 		}
  
