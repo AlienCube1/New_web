@@ -90,14 +90,14 @@ if($is_logged_in == true) {
 	//// Query to update password, first check if old password is valid, and if it is change it to new
 	if(isset($_POST['pass_change'])){
 		$old_password = $_POST['change_password'];
-		$hashed_old = md5($old_password);
+			$hashed_old = md5($old_password);
 		$new_password = $_POST['repeat_pw'];
-		$hashed_new = md5($new_password);
-		$idusera = get_user($username);
-		$sqlOld = "SELECT password FROM login WHERE id = :id";
-		$stmtOld = $pdo->prepare($sqlOld);
-		$stmtOld->execute(['id' => $idusera]);
-		$postOld = $stmtOld->fetchAll(PDO::FETCH_ASSOC);
+			$hashed_new = md5($new_password);
+			$idusera = get_user($username);
+				$sqlOld = "SELECT password FROM login WHERE id = :id"; #query for getting pw
+				$stmtOld = $pdo->prepare($sqlOld);
+				$stmtOld->execute(['id' => $idusera]);
+				$postOld = $stmtOld->fetchAll(PDO::FETCH_ASSOC);
 		foreach($postOld as $old_pw) {
 			$old_password_old = $old_pw['password'];
 		}//// If old password is equal to new password, change it 
@@ -109,7 +109,7 @@ if($is_logged_in == true) {
 			header("location: logout.php");
 		}
 	}
-
+	if(isset($_POSt['post_job'])) 
 
 }
 
