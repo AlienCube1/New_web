@@ -3,6 +3,14 @@
 	<title>Stranica hehe</title>
 	<link rel="stylesheet" type="text/css" href="/style/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            text-align: center;
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -81,9 +89,6 @@
 		
 		<input type="submit" name="register" class="btn-3d green" value="Registriraj me">
     </form>
-    <div id="error">
-    	<p class="login_text">Lozinke se ne podudaraju!</p>
-    </div>
   </div>
 
 </div>

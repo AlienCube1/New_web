@@ -1,25 +1,20 @@
-body {
-    padding: 0;
-    margin: 0;
-  	height: 100vh;
-  	text-align: center;
-}
-
-
-
 
 /* Animacije */
 @keyframes navcolors {
   0%, 100% {
   	background: rgb(0,0,139);
+  	border-color: rgb(0,139,139);
 	}
   33% {
   	background: rgb(127,127,181);
+  	border-color: rgb(0,0,139);
+  	
 
   }
   67% {
   	background: rgb(0,139,139);
-
+  	border-color: rgb(127,127,181);
+  	
   }
 
 }
@@ -31,15 +26,12 @@ body {
 	padding-bottom: 10px;
 	margin: 0;
 	animation: navcolors 8s infinite;
+	border-bottom: 3px solid black;
 }
 header {
 	position: fixed;
   	top: 0;
   	width: 100%
-}
-
-#error {
-	display: none;
 }
 
 input[type=password], input[type=text], input[type=email]{
@@ -49,6 +41,26 @@ input[type=password], input[type=text], input[type=email]{
   width: 200px;
   padding-left:10px;
 
+}
+#profilNav {
+	margin-top: 20vh;
+	margin-left: 5vw;
+}
+
+.profilNavButtons {
+	display: left;
+	width: 12vw;
+	height: 10vh;
+	border: none;
+	background: ;
+}
+
+#content {
+	margin: auto;
+}
+
+.profilNavButtons:hover, .profilNavButtons:focus {
+	cursor: pointer;
 }
 
 .login_text {
