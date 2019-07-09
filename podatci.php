@@ -21,8 +21,8 @@ echo "</div>";
 ?>
 	<div id='objavi_sliku'>
 		<form method='post' action='update.php' enctype='multipart/form-data'>
-    		<input type='file' name='image'>
-    		<input type='submit' value='Submit' name='upload'>
+    		<input type='file' name='image' value="Odaberite datoteku">
+    		<input type='submit' value='Odaberi' name='upload'>
     	</form>
 	</div>
 </body>

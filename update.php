@@ -63,7 +63,7 @@ if($is_logged_in == true) {
 		////VARS FOR PICTURE INFO
 		$imagetmp  = addslashes (file_get_contents($_FILES['image']['tmp_name'])); #Picture
 		$file_type = $_FILES['image']['type']; #File type of picture
-		$allowed = array("image/jpg", "image/png", "image/bmp"); #array for pictures
+		$allowed = array("image/jpeg", "image/png", "image/bmp"); #array for pictures
 		if(!in_array($file_type, $allowed)) { #if file is not in array, don't upload it.
 			echo "Not a picture file";
 		}
@@ -72,13 +72,43 @@ if($is_logged_in == true) {
 		$new_upload = new user($imagetmp, $userId);
 		echo $new_upload->upload();
 }
-	}/*
+	}
+	//// Query to update username with new username and return to profil.php
 	if(isset($_POST['name_change'])){
+		$new_username = $_POST['change_username'];
+		$usersId = get_user($username);
+		$sqlId = 'UPDATE login SET username = :username WHERE id = :id';
+		$stmtId = $pdo->prepare($sqlId);
+		$stmtId->execute(['username' => $new_username, 'id'=> $usersId]);
+		echo 'Post updated';
+		$_SESSION['username'] = $new_username;
+		header("location: profil.php");
+
+
 
 	}
+	//// Query to update password, first check if old password is valid, and if it is change it to new
 	if(isset($_POST['pass_change'])){
-
-	}*/
+		$old_password = $_POST['change_password'];
+		$hashed_old = md5($old_password);
+		$new_password = $_POST['repeat_pw'];
+		$hashed_new = md5($new_password);
+		$idusera = get_user($username);
+		$sqlOld = "SELECT password FROM login WHERE id = :id";
+		$stmtOld = $pdo->prepare($sqlOld);
+		$stmtOld->execute(['id' => $idusera]);
+		$postOld = $stmtOld->fetchAll(PDO::FETCH_ASSOC);
+		foreach($postOld as $old_pw) {
+			$old_password_old = $old_pw['password'];
+		}//// If old password is equal to new password, change it 
+		if($hashed_old == $old_password_old) {
+			$sqlNew = 'UPDATE login SET password = :new_password WHERE id = :id';
+			$stmtNew = $pdo->prepare($sqlNew);
+			$stmtNew->execute(['new_password' => $hashed_new, 'id'=> $idusera]);
+			echo 'Post updated';
+			header("location: logout.php");
+		}
+	}
 
 
 }

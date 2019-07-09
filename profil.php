@@ -8,13 +8,32 @@
 			display: flex;
 			margin: 0;
 			padding: 0;
+			text-align: center;
 		}
 	</style>
 </head>
 	<header>
 		<div id="nav">
+			<?php
+            session_start();
+            include_once("config.php");
+            $usercode = $_SESSION['username'];
+            $code = "SELECT confirmed FROM login WHERE username = :username";
+            $stmtcode = $pdo->prepare($code);
+            $stmtcode->execute(['username' => $usercode]);
+            $postcode = $stmtcode->fetchAll(PDO::FETCH_ASSOC);
+            foreach($postcode as $row) {
+                $code_post = $row['confirmed'];
+            }
+            if($code_post != 1) {
+            echo "<div id='not_confirmed'>";
+                echo"<p>Vaša e-mail adresa nije potvrđena, potvrdite e-mail adresu kako biste nastavili koristiti naše usluge.</p>";
+            echo"</div>"; 
+            } 
+            ?>
 			<ul>
 				<a href="index.php" class="btn-3d green">Početna</a>
+				<a href="poslovi.php" class="btn-3d green">Poslovi</a>
 				<a href="about.php" class="btn-3d green">O nama</a>
                 <a href='profil.php' class='btn-3d green'>Profil</a>
 				<a href='logout.php' class='btn-3d red'>Odjava</a>
