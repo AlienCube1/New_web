@@ -109,7 +109,9 @@ if($is_logged_in == true) {
 			header("location: logout.php");
 		}
 	}
-	if(isset($_POSt['post_job'])) 
+	if(isset($_POSt['post_job'])) {
+		
+	}
 
 }
 

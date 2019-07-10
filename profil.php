@@ -14,7 +14,7 @@
 </head>
 	<header>
 		<div id="nav">
-			<?php
+            <?php
             session_start();
             include_once("config.php");
             $usercode = $_SESSION['username'];
@@ -25,7 +25,7 @@
             foreach($postcode as $row) {
                 $code_post = $row['confirmed'];
             }
-            if($code_post != 1) {
+            if($code_post != 1 && $usercode == true) {
             echo "<div id='not_confirmed'>";
                 echo"<p>Vaša e-mail adresa nije potvrđena, potvrdite e-mail adresu kako biste nastavili koristiti naše usluge.</p>";
             echo"</div>"; 
@@ -33,9 +33,10 @@
             ?>
 			<ul>
 				<a href="index.php" class="btn-3d green">Početna</a>
-				<a href="poslovi.php" class="btn-3d green">Poslovi</a>
+        <a href="poslovi.php" class="btn-3d green">Poslovi</a>
 				<a href="about.php" class="btn-3d green">O nama</a>
-                <a href='profil.php' class='btn-3d green'>Profil</a>
+        <a href='message.php' class='btn-3d green'>Poruke</a>
+        <a href='profil.php' class='btn-3d green'>Profil</a>
 				<a href='logout.php' class='btn-3d red'>Odjava</a>
 			</ul>
 		</div>

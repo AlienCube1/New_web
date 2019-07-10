@@ -10,6 +10,11 @@
             height: 100vh;
             text-align: center;
         }
+        #ovaj-container {
+            margin-top: 16vh;
+            border: 5px solid black;
+            width: 100px;
+        }
     </style>
 </head>
 <body>
@@ -35,7 +40,7 @@
             foreach($postcode as $row) {
                 $code_post = $row['confirmed'];
             }
-            if($code_post != 1) {
+            if($code_post != 1 && $usercode==true) {
             echo "<div id='not_confirmed'>";
                 echo"<p>Vaša e-mail adresa nije potvrđena, potvrdite e-mail adresu kako biste nastavili koristiti naše usluge.</p>";
             echo"</div>"; 
@@ -57,6 +62,7 @@
                 <?php
                 session_start();
                 if(isset($_SESSION['loggedin'])) {
+                    echo"<a href='message.php' class='btn-3d green'>Poruke</a>";
                     echo"<a href='profil.php' class='btn-3d green'>Profil</a>";
                     echo"<a href='logout.php' class='btn-3d red'>Odjava</a>";
                 }
@@ -112,5 +118,33 @@
 </div>
 
 <script type="text/javascript" src="/js/js.js"></script>
+
+
+<?php
+include_once('config.php');
+$sql = $pdo->query('SELECT * FROM oglas');
+while($row = $sql->fetch(PDO::FETCH_ASSOC)){?>
+<div id='ovaj-container'>
+<p><?php
+echo "Naziv posla: ".$row['ad_title'];
+ ?></p>
+<p><?php
+echo "Opis posla: ".$row['ad_description'] . '<br>';
+?></p>
+<p><?php
+echo "Cijena: ".$row['ad_price'] . '<br>';
+?></p>
+<form action ='read.php' method='post'>
+    <input type="hidden" name="post_id" value="<?php echo $row['ad_id'] ?>">
+    <input type='submit' class='btn-3d green' value='Detalji' name='detail'>
+</form>
+
+
+</div>
+
+<?php
+}
+?>
+
 </body>
 </html>
