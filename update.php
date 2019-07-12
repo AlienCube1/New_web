@@ -1,4 +1,4 @@
-<?php
+<?php 
 include_once("config.php");
 session_start();
 
@@ -9,13 +9,11 @@ $username = $_SESSION['username'];
 class user {
 	private $imagetmp;
 	private $userId;
-//// Constructor method, basic use is for it to "Set" the functions to whatever you want
 	function __construct($imagetmp, $userId) {
 		$this->imagetmp = $imagetmp;
 		$this->userId = $userId;
 
 	}
-	////Function to upload the picture
 	function upload(){
 		global $pdo;
 		$sql = 'INSERT INTO picture(image, user_id) VALUES (:image, :user_id)';
@@ -23,11 +21,10 @@ class user {
 		$stmt->execute(["image"=>$this->imagetmp, "user_id"=>$this->userId]);
 		echo "UPLOAD";
 		header("location: profil.php");
-
+		
 	}
 
 }
-///This function IS NOT a part of the class 'user'
 //// Function to get user information(id)
 function get_user($username){
 	global $pdo;
@@ -48,9 +45,9 @@ function get_user($username){
 
 
 
-//// Loop to check which button is pressed
+//// Loop to check which button is pressed 
 if($is_logged_in == true) {
-
+	
 	if(isset($_POST['upload'])){
 		$user_id = get_user($username);
 		///Check if user alredy has a profile picture, if he does delete it so he can upload a new one.
@@ -103,7 +100,7 @@ if($is_logged_in == true) {
 		$postOld = $stmtOld->fetchAll(PDO::FETCH_ASSOC);
 		foreach($postOld as $old_pw) {
 			$old_password_old = $old_pw['password'];
-		}//// If old password is equal to new password, change it
+		}//// If old password is equal to new password, change it 
 		if($hashed_old == $old_password_old) {
 			$sqlNew = 'UPDATE login SET password = :new_password WHERE id = :id';
 			$stmtNew = $pdo->prepare($sqlNew);

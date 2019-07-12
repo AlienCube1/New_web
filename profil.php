@@ -5,14 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Nudimo najbolji i najveći izbor poslova vezanih uz WEB Development. Tražite i objavljujte poslove kod nas.">
   <meta name="keywords" content="posao,web dizajn,web razvoj,php,javascript,html,html5,php developer,javascript developer,frontend,backend,web,poslovi,dizajner,programer,jquery,developer,js,stranica,web stranica,web posao, oglas,oglasnik,oglas za posao,laptop,računalo,posao od kuće,rad od kuće,rad na daljinu">
-	<style type="text/css">
-		        body {
-            padding: 0;
-            margin: 0;
-            height: 100vh;
-
-        }
-	</style>
 </head>
 	<header>
 		<div id="nav">
@@ -30,8 +22,8 @@
             if($code_post != 1 && $usercode == true) {
             echo "<div id='not_confirmed'>";
                 echo"<p>Vaša e-mail adresa nije potvrđena, potvrdite e-mail adresu kako biste nastavili koristiti naše usluge.</p>";
-            echo"</div>";
-            }
+            echo"</div>"; 
+            } 
             ?>
             <ul>
                 <button class="navbutton" onclick="pocetna()">Početna</button>
@@ -44,7 +36,7 @@
                 echo"<button id='reg' class='navbutton'>Registracija</button>";
                 }
                 ?>
-
+                
 
                 <?php
                 session_start();

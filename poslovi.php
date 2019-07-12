@@ -1,38 +1,33 @@
 <html>
 <head>
-    <title>Stranica hehe</title>
+    <title>WEB poslovi | Poslovi</title>
     <link rel="stylesheet" type="text/css" href="/style/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nudimo najbolji i najveći izbor poslova vezanih uz WEB Development. Tražite i objavljujte poslove kod nas.">
+    <meta name="keywords" content="posao,web dizajn,web razvoj,php,javascript,html,html5,php developer,javascript developer,frontend,backend,web,poslovi,dizajner,programer,jquery,developer,js,stranica,web stranica,web posao, oglas,oglasnik,oglas za posao,laptop,računalo,posao od kuće,rad od kuće,rad na daljinu">
     <style type="text/css">
 
         body {
             padding: 0;
             margin: 0;
-            height: 100vh;
-            text-align: center;
+            height: 100vh;        
             display: flex;
         }
 
         #posao_form {
-
             margin: 25vh auto auto auto;
         }
         #objava {
             display: flex;
-
         }
-
         #opis {
             height: 150px;
             overflow: wrap;
-
         }
         #posao_form input[type=text] {
             width: 300px;
             margin: 10px;
-
         }
-
         textarea {
             border: 3px solid #999;
             border-radius: 10px;
@@ -40,7 +35,6 @@
             padding-left:10px;
             resize: vertical;
         }
-
         .posao_text {
             font-family: "Trebuchet MS", Helvetica, sans-serif;
             font-size: 28px;
@@ -54,7 +48,6 @@
             text-shadow: rgb(0, 0, 0) 3px 2px 6px;
             margin: 10px;
         }
-
     </style>
 </head>
 <body>
@@ -83,8 +76,8 @@
             if($code_post != 1 && $usercode == true) {
             echo "<div id='not_confirmed'>";
                 echo"<p>Vaša e-mail adresa nije potvrđena, potvrdite e-mail adresu kako biste nastavili koristiti naše usluge.</p>";
-            echo"</div>";
-            }
+            echo"</div>"; 
+            } 
             ?>
             <ul>
                 <button class="navbutton" onclick="pocetna()">Početna</button>
@@ -97,7 +90,7 @@
                 echo"<button id='reg' class='navbutton'>Registracija</button>";
                 }
                 ?>
-
+                
 
                 <?php
                 session_start();
@@ -122,7 +115,7 @@
         <input type="text" name="username" placeholder="Unesite korisničko ime">
 
         <p class="login_text">Lozinka: </p>
-        <input type="password" name="password" placeholder="Unesite lozinku">
+        <input type="password" name="password" placeholder="Unesite lozinku">  
 
         <p class="checkbox" class="login_text">Zapamti me?</p>
         <input class="checkbox" id="checkbox" type="checkbox" name="remember">
@@ -146,11 +139,11 @@
         <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Molimo da unesete pravilnu E-mail adresu.' : '')" placeholder="Unesite E-mail adresu" id="emailfield" required>
 
         <p class="login_text">Lozinka: </p>
-        <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Lozinka mora sadržavati najmanje 8 znakova, jednu znamenku, jedno veliko i jedno malo slovo.' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Unesite lozinku" required>
+        <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Lozinka mora sadržavati najmanje 8 znakova, jednu znamenku, jedno veliko i jedno malo slovo.' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Unesite lozinku" required>  
 
         <p class="login_text">Ponovite lozinku: </p>
-        <input type="password" name="repsw"  id="password_two" placeholder="Ponovno unesite lozinku" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Molimo da unesete istu lozinku.' : '');" required>
-
+        <input type="password" name="repsw"  id="password_two" placeholder="Ponovno unesite lozinku" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Molimo da unesete istu lozinku.' : '');" required> 
+        
         <input type="submit" name="register" class="btn-3d green" value="Registriraj me">
     </form>
   </div>
@@ -163,7 +156,7 @@
                     <img onclick='nudim_posao()' src="./images/nudimposao.png">
             </div>
 </div>
-<?php
+<?php 
  }
 ?>
 <div id="trazim" class="posao">
@@ -198,7 +191,7 @@
             <input class="btn-3d green" type="submit" name= 'submit_job'value="Objavi posao">
         </div>
     </form>
-
+    
 </div>
 
 <script type="text/javascript" src="/js/js.js"></script>
