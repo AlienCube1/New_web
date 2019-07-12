@@ -21,10 +21,10 @@ class message{
         #$post = $stmt->fetchall(PDO::FETCH_ASSOC);
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             echo "<div>";
-            echo "Title: " . $row['title'] . "<br>";
-            echo "Sender: " . $row['user_send'] . "<br>";
-            echo "Message: " . $row['message'] . "<br>";
-            echo "Time: " . $row['time_stamp'] . "<br>";
+            echo "<p>"."Title: " . $row['title'] . "</p>". "<br>";
+            echo "<p>"."Sender: " . $row['user_send'] . "</p>". "<br>";
+            echo "<p>"."Message: " . $row['message'] ."</p>". "<br>";
+            echo "<p>"."Time: " . $row['time_stamp'] . "</p>"."<br>";
             echo "</div>";
         }   echo"<a href='https://marcelbockovac.from.hr/index.php'>Povratak</a>";
     }
