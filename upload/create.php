@@ -27,11 +27,10 @@ function insert($username, $password, $email, $code) {
 ////Function for setting messages
 function message($head, $sender, $recive, $content) {
 		global $pdo;
-		$hour = date('H:i');
-		$date_of = date('d.m.Y.');
-		$message_query = "INSERT INTO message(title,user_send,user_recive,message,hour,date_of) VALUES(:head, :sender, :recive, :content,:hour, :date_of)";
+		$time = date('H:i d.m.Y');
+		$message_query = "INSERT INTO message(title,user_send,user_recive,message,time_stamp) VALUES(:head, :sender, :recive, :content,:time_stamp)";
 		$msg_stmt = $pdo->prepare($message_query);
-		$msg_stmt->execute(['head'=>$head, 'sender'=>$sender, 'recive'=>$recive, 'content'=>$content, 'hour'=>$hour, 'date_of'=>$date_of]);
+		$msg_stmt->execute(['head'=>$head, 'sender'=>$sender, 'recive'=>$recive, 'content'=>$content, 'time_stamp'=>$time]);
 		header("location: index.php");
 }
 
@@ -66,7 +65,7 @@ function get_user($username){
 		return $row['id'];
 	}
 	}
-function insert_ad($name,$desc,$price,$file, $user_id, $username) {
+function insert_ad($name,$desc,$price,$file=null, $user_id, $username) {
 	global $pdo;
 	echo "im here.";
 	$adInsert = 'INSERT INTO oglas(ad_title, ad_description, ad_price, ad_file,ad_user_id, username) VALUES(:ad_title, :ad_description, :ad_price, :ad_file, :ad_user_id, :username)';
@@ -76,19 +75,6 @@ function insert_ad($name,$desc,$price,$file, $user_id, $username) {
 		header("location: poslovi.php");
 	}
 
-}
-//// Function for uploading when no file is attached, I am only doing this because the upper funciton decide not to support
-//// Fileless and uploading with files attached, this language is making me mad.
-//// PHP 'ftw'
-//// DO NOT TOUCH PLEASE!!!!
-function fileless($name, $desc, $price, $user_id, $username) {
-	global $pdo;
-	$insert = 'INSERT INTO oglas(ad_title, ad_description, ad_price, ad_user_id, username) VALUES(:ad_title, :ad_description, :ad_price, :ad_user_id, :username)';
-	$insertStmt = $pdo->prepare($insert);
-	$insertStmt->execute(['ad_title'=>$name, 'ad_description'=>$desc, 'ad_price'=>$price, 'ad_user_id'=> $user_id, 'username'=>$username]);
-	if ($insertStmt == true) {
-		header("location: poslovi.php");
-	}
 }
 
 session_start();
@@ -106,7 +92,6 @@ if(isset($_POST['register'])) {
 		echo"Lozinke se ne podudaraju";
 	}
 }
-
 if(isset($_POST['submit_job'])) {
 	$ad_name = $_POST['ime_posla'];
 	$ad_desc = $_POST['opis_posla'];
@@ -115,37 +100,32 @@ if(isset($_POST['submit_job'])) {
 	//// Allowed files
 	$total = count($_FILES['datoteke']['name']);
 	//// IF no files were found, upload null
-	var_dump($_FILES['datoteke']['name']);
-	$bug_fix = $_FILES['datoteke']['name'];
 
-	if(filesize($bug_fix) < 1) {
+	if($total == 0) {
 		echo "No Files found!";
-		fileless($ad_name, $ad_desc, $ad_price ,$ad_user_id, $user_name);
+		insert_ad($ad_name, $ad_desc, $ad_price ,$ad_user_id, $user_name);
 			}
 
 	//// If a file was found, upload them all
 	else if ($total != 0){
 		for($i = 0; $i < $total; $i++){
-			//// It uploads the tmp file
 			$tmpFilePath = $_FILES['datoteke']['tmp_name'][$i];
 			$file = $_FILES['datoteke']['name'];
 			if ($tmpFilePath !=""){
-				//// Get extension
 				$ext = pathinfo($tmpFilePath, PATHINFO_EXTENSION);
-				//// Get new file path
 				$newFilePath = "upload/" . $_FILES['datoteke']['name'][$i] . $ext;
 				$file = $newFilePath;
-				//// Move file, if successful, start function insert_ad
 				if(move_uploaded_file($tmpFilePath, $newFilePath)) {
 					echo "Success";
 					insert_ad($ad_name, $ad_desc, $ad_price, $file, $ad_user_id, $user_name);
+
 				}
 			}
 
 		}
 
-	  }
-}
+			}
+	}
 
 
 

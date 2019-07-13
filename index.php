@@ -66,12 +66,16 @@
                 }
 
                 ?>
+				<?php
+				session_start();
+				if(isset($_SESSION['loggedin'])) { ?>
                <div id="searchDiv">
                     <form action="update.php" method="post">
                         <input onfocusin="set_width()" onfocusout="unset_width()" type="text" name="query" placeholder="Pretraži poslove..." /><br>
-                        <input id="search_submit" type="submit" value="Pretraži" />
+                        <input id="search_submit" type="submit" value="Pretraži" name='search' />
                     </form>
                 </div>
+				<?php } ?>
             </ul>
 		</div>
 
@@ -151,10 +155,6 @@ echo "Objavio: ".$row['username'] . '<br>';?></p>
 
 
 
-
-<!-- Ova tipka radi, ali kad otvori str pokaze samo link za povratak, ne kontam zasto... Imas dolje funkciju i sve je settano kako treba, ili ja nesto krivo vidim lolcina, kad to skontamo cu napravit ono da makne sve poslove, pokaze animaciju i otvori predivne podatke o poslu xd, ovako bi trebalo bit: https://codepen.io/sandstedt/pen/vKWzWE -->
-
-<!-- <button class="detalji-button" onclick='details()'>Novi detalji</button> -->
 </div>
 
 <?php
@@ -164,25 +164,7 @@ echo "Objavio: ".$row['username'] . '<br>';?></p>
 </div>
 
 <script type="text/javascript">
-    function details() {
 
-          var form = document.createElement("form");
-          form.setAttribute("action", "read.php");
-          form.setAttribute("method", 'post');
-          form.setAttribute("id", "forma");
-          document.body.appendChild(form);
-          var input1 = document.createElement("input");
-          input1.setAttribute("type", "hidden");
-          input1.setAttribute("name", "post_id");
-          input1.setAttribute("value", "<?php echo $row['ad_id'] ?>");
-          var input2 = document.createElement("input");
-          input2.setAttribute("type", "submit");
-          input2.setAttribute("name", "detail");
-          input2.setAttribute("id", "submit-button");
-          document.getElementById("forma").appendChild(input1);
-          document.getElementById("forma").appendChild(input2);
-          document.getElementById("submit-button").click();
-    }
 
     function trazim_posao() {
         window.location.replace("http://marcelbockovac.from.hr/index.php");
@@ -212,11 +194,11 @@ echo "Objavio: ".$row['username'] . '<br>';?></p>
     }
     var submit_search = document.getElementById("search_submit");
     function set_width() {
-        submit_search.style.width = "200px";
+        submit_search.style.width = "11vw";
     }
 
     function unset_width() {
-        submit_search.style.width = "130px";
+        submit_search.style.width = "8vw";
     }
 </script>
 

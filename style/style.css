@@ -10,21 +10,20 @@ body {
 }
 
 
-
 #jobs {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-auto-flow: row;
-    margin-top: 150px;
+    margin-top: 9vw;
     grid-row-gap: 5px;
 }
 
 .grid-container {
-    margin-top: 150px;
-    margin-left: 20px;
-    margin-right: 20px;
-    width: 305px;
+    margin-top: 14vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 16vw;
     align-items: auto;
 
 }
@@ -32,7 +31,7 @@ body {
 .ovaj-container {
     text-align: center;
     width: 30vw;
-    height: 31vw;
+    height: 50vh;
     margin: 0.5vw;
     overflow: hidden;
     border-radius: 60px 60px 0 0;
@@ -43,7 +42,7 @@ body {
     font-family: 'Raleway', Arial, sans-serif;
     font-size: 1vw;
     height: 20vh;
-    width: 28vw;
+    width: 25vw;
     padding: 10px;
     text-overflow: ellipsis;
     background: #f0f0f085;
@@ -53,20 +52,20 @@ body {
 
 .cijena-posla {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 1vw;
     font-variant: small-caps;
     font-weight: 500;
 }
 
 .objavio {
     font-family: 'Raleway', Arial, sans-serif;
-    font-size: 10px;
+    font-size: 1vw;
 }
 
 .detalji-button {
 
-    width: 310px;
-    height: 50px;
+    width: 16.2vw;
+    height: 7vh;
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
     background-image: -moz-linear-gradient(top, #3498db, #2980b9);
@@ -78,7 +77,7 @@ body {
     border-radius: 0 0 60px 60px;
     font-family: Courier New;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 1.5vw;
     padding: 10px 20px 10px 20px;
     border: solid #1f628d 3px;
     text-decoration: none;
@@ -95,18 +94,18 @@ body {
 #searchDiv {
     position: relative;
     float: right;
-    margin-right: 60px;
-    margin-top: 10px;
+    margin-right: 3.125vw;
+    margin-top: 0.9vh;
     border-radius: 2em;
-    height: 65px;
+    height: 8vh;
     animation: navbuttons 5s infinite;
 }
 
 #searchDiv input[type=text] {
     border: solid 1px #ccc;
-    padding: 9px 10px 9px 10px;
-    width: 130px;
-    height: 40px;
+    padding: 0.5vw;
+    width: 8vw;
+    height: 5vh;
 
     -webkit-border-radius: 2em 2em 0 0;
     -moz-border-radius: 2em 2em 0 0;
@@ -120,8 +119,8 @@ body {
 
 #searchDiv input[type=submit] {
 
-  height: 25px;
-  width: 130px;
+  height: 3vh;
+  width: 8vw;
   -webkit-border-radius: 0 0 2em 2em;
   -moz-border-radius: 0 0 2em 2em;
   border-radius: 0 0 2em 2em;
@@ -134,10 +133,10 @@ body {
 }
 #searchDiv input[type=text]:focus {
     outline: none;
-    width: 200px;
+    width: 11vw;
     background-color: #fff;
     border-color: #66CC75;
-    padding-left: 15px;
+    padding-left: 0.8vw;
 
     -webkit-box-shadow: 0 0 5px rgba(52, 152, 219, .5);
     -moz-box-shadow: 0 0 5px rgba(52, 152, 219, .5);
@@ -361,19 +360,26 @@ body {
 
     
 }
+
+.poruke-div {
+    margin-top: 15vw;
+    display: inline-block;
+    width: 18vw;
+    height: 25vw;
+}
 .navbutton {
     position: relative;
-    height: 120px;
-    width: 100px;
+    height: 6.25vw;
+    width: 6vw;
     background:  #2be97c85;
     top: -30px;
     transform: rotate(0deg) skew(22deg);
     border: none;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
     animation: navbuttons 5s infinite;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 1vw;
     letter-spacing: 0px;
     word-spacing: 0px;
     color: #000000;
@@ -381,23 +387,22 @@ body {
     font-style: italic;
     font-variant: small-caps;
     text-shadow: rgb(0, 0, 0) 1px 1px 4px;
-    border-radius: 0 0 25px 25px;
 }
 
 .navbuttonred {
     position: relative;
-    height: 120px;
-    width: 100px;
+    height: 6.25vw;
+    width: 6vw;
     background: #e800009c;
     top: -30px;
     transform: rotate(0deg) skew(22deg);
     -webkit-transform: rotate(0deg) skew(22deg);
     border: none;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 1vw;
+    margin-right: 1vw;
     animation: navbuttons 5s infinite;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 1vw;
     letter-spacing: 0px;
     word-spacing: 0px;
     color: #000000;
@@ -405,7 +410,6 @@ body {
     font-style: italic;
     font-variant: small-caps;
     text-shadow: rgb(0, 0, 0) 1px 1px 4px;
-    border-radius: 0 0 25px 25px;
 }
 
 .navbutton:hover,
@@ -453,40 +457,41 @@ input[type=email] {
 
 #profilNav {
     float: left;
-    margin-top: 30vh;
+    margin-top: 10vw;
     margin-left: 5vw;
 }
 
 #content {
     float: left;
-    margin-top: 25vh;
+    margin-top: 8vw;
 }
 
 .profilNavButtons {
     display: left;
-    width: 150px;
-    height: 80px;
+    width: 8vw;
+    height: 4.2vw;
     border: none;
     background: #c4c6cc;
-    border-radius: 50px;
+    border-radius: 2.6vw;
     animation: navbuttons 5s infinite;
 }
 
-.profilNavButtons:hover {
+.profilNavButtons:hover, .profilnavButtons:focus {
+    outline: none;
     background: #2e9099;
     color: white;
 }
 
 #not_confirmed {
     margin: auto;
-    width: 700px;
-    height: 50px;
+    width: 36vw;
+    height: 2.6vw;
     text-align: center;
     border: 3px solid #cc5300;
-    border-radius: 30px;
+    border-radius: 1.5vw;
     background: #cca100;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 1vw;
     letter-spacing: 0px;
     word-spacing: 0px;
     color: #000000;
@@ -501,7 +506,7 @@ input[type=email] {
 .login_text {
     display: block;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 1.1vw;
     letter-spacing: 0px;
     word-spacing: 0px;
     color: #000000;
@@ -516,7 +521,7 @@ input[type=email] {
 #login_text {
     display: block;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 25px;
+    font-size: 1.3vw;
     letter-spacing: 0px;
     word-spacing: 0px;
     color: #000000;
@@ -560,9 +565,9 @@ input[type=email] {
 }
 
 #checkbox {
-    margin-top: 10px;
-    width: 15px;
-    height: 15px;
+    margin-top: 0.5vw;
+    width: 1vw;
+    height: 1vw;
 }
 
 /* za one buttone koji su aktivni, tj. na koje kliknes javascriptom doda ovu klasu */
@@ -605,7 +610,7 @@ input[type=email] {
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 1.5vw;
     font-weight: bold;
 }
 

@@ -84,31 +84,95 @@ if(isset($_POST['detail'])){
     	#opis-posla {
     		text-align: center;
     		width: 60vw;
-    		height: 30vh;
+    		height: 40vh;
     		margin: -1vh 4vw 0 4vw;
     		border-radius: 50px 50px 50px 0;
     		padding: 2vh 1vw 0 1vw;
     		background: rgba(51,51,153,0.5);
     		font-family: "Courier New", Courier, monospace;
     		font-size: 1vw;
-    		font-weight: 400;
+    		font-weight: 500;
     	}
 
     	#cijena-posla {
     		text-align: center;
-    		width: 10vw;
-    		height: 5vh;
+    		height: 4vh;
     		margin: 0 1vw 0 4vw;
     		border-radius: 0 0 30px 30px;
-    		padding: 1vh 1vw 0 1vw;
+    		padding: 1vh 1vw 1vh 1vw;
     		background: rgba(51,51,153,0.5);
     		font-family: "Courier New", Courier, monospace;
     		font-size: 1vw;
     		font-weight: 550;
+    		float: left;
+    	}
+    	#tko-je-objavio, #kontakt-btn {
+    		display: inline-block;
+    	}
+    	#tko-je-objavio {
+    		text-align: center;
+    		
+    		height: 4vh;
+    		color: rgba(255,255,255,0.8);
+    		background: rgba(68,68,68,0.5);
+    		font-family: "Courier New", Courier, monospace;
+    		font-size: 1vw;
+    		font-weight: 500;
+    		margin-right: 10vw;
+    		margin-top: 0;
+    		padding: 1vw 1vw 0 1vw;
+    		border-radius: 0 0 30px 30px;
+    		float: right;
+    	}
+
+    	#kontakt-btn {
+    		text-align: center;
+    		border: 3px solid rgba(68,68,68,0.7);
+    		background: rgba(51,204,51,0.6);
+    		height: 5vw;
+    		width: 60vw;
+    		border-radius: 30px;
+    		padding: 0 1vw 0 1vw;
+    		margin-top: 2vh;
+    		margin-left: 4vw;
+    		margin-right: 4vw;
+    		font-family: "Courier New", Courier, monospace;
+    		font-size: 2vw;
+    		text-transform: uppercase;
+    	}
+
+    	#povratak-link {
+    		height: 6vw;
+    		width: 15vw;
+    		position: fixed;
+    		left: 0;
+    		bottom: 0;
+    		padding: 2vw 3vw 1vw 0;
+    		color: rgba(255,255,255,0.8);
+    		border: 3px solid rgba(51, 0, 153, 0.7);
+    		background: rgba(51, 102, 153, 0.6);
+    		border-radius:0% 100% 0% 100% / 100% 100% 0% 0%;
+    		font-family: "Courier New", Courier, monospace;
+    		text-transform: uppercase;
+    		font-weight: 600;
+    		font-size: 1.5vw;
+    		text-shadow: 3px 3px 5px rgba(150, 150, 150, 1);
+    	}
+
+    	#povratak-link:hover, #povratak-link:focus {
+    		cursor: pointer;
+    		border: 3px solid rgba(31, 0, 141, 1);
+    		background: rgba(35, 111, 161, 1);
+    	}
+
+    	#kontakt-btn:hover, #kontakt-btn:focus {
+    		cursor: pointer;
+    		border: 3px solid rgba(51, 0, 153, 1);
+    		background: rgba(51,102,153,1);
     	}
     </style>
 	</head>
-
+	<body scroll="no" style="overflow: hidden;">
 	<div id='posao-container'>
 	<p id="naslov-posla"><?php
 	echo "".$row['ad_title'];
@@ -135,11 +199,18 @@ if(isset($_POST['detail'])){
 		<input type="hidden" name="post_id" value="<?php echo $post_id ?>">
 		<input type="hidden" name="desc" value="<?php echo $post_desc ?>">
 		<input type="hidden" name="post_name" value="<?php echo $poster_name ?>">
-		<input type='submit' class='btn-3d green' value='Kontaktirajte  <?php echo $row['username'] ?>' name='Contact'>
+		<input type='submit' id="kontakt-btn" value='Kontaktirajte  <?php echo $row['username'] ?>' name='Contact'>
+		</form>
 	</p>
 	</div>
 <?php
 }}
-echo "<a href='https://marcelbockovac.from.hr/index.php'>Povratak</a>";
+echo "<button id='povratak-link' onclick='pocetna()'>Povratak</button>";
 }
 ?>
+<script type="text/javascript">
+	function pocetna() {
+		window.location.replace('https://marcelbockovac.from.hr/index.php');
+	}
+</script>
+</body>

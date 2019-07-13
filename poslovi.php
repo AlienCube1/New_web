@@ -179,7 +179,7 @@
 
 
 
-        <p class="posao_text">Cijena posla: </p>
+        <p class="posao_text">Plaćanje posla: </p>
         <input type="text" maxlength="25" name="cijena_posla" required>
 
 

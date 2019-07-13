@@ -1,0 +1,7 @@
+def greet(firstname):
+    return "Hello" + firstname
+
+
+greet("Marcel")
+
+
