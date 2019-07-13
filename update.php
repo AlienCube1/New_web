@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once("config.php");
 session_start();
 
@@ -21,7 +21,7 @@ class user {
 		$stmt->execute(["image"=>$this->imagetmp, "user_id"=>$this->userId]);
 		echo "UPLOAD";
 		header("location: profil.php");
-		
+
 	}
 
 }
@@ -45,9 +45,9 @@ function get_user($username){
 
 
 
-//// Loop to check which button is pressed 
+//// Loop to check which button is pressed
 if($is_logged_in == true) {
-	
+
 	if(isset($_POST['upload'])){
 		$user_id = get_user($username);
 		///Check if user alredy has a profile picture, if he does delete it so he can upload a new one.
@@ -100,7 +100,7 @@ if($is_logged_in == true) {
 		$postOld = $stmtOld->fetchAll(PDO::FETCH_ASSOC);
 		foreach($postOld as $old_pw) {
 			$old_password_old = $old_pw['password'];
-		}//// If old password is equal to new password, change it 
+		}//// If old password is equal to new password, change it
 		if($hashed_old == $old_password_old) {
 			$sqlNew = 'UPDATE login SET password = :new_password WHERE id = :id';
 			$stmtNew = $pdo->prepare($sqlNew);
@@ -109,6 +109,26 @@ if($is_logged_in == true) {
 			header("location: logout.php");
 		}
 	}
+	if(isset($_POST['search'])){
+		$searching_for = $_POST['query'];
+		$search = "%".$searching_for."%";
+		echo $search . "<br>";
+		#echo $searching_for;
+		$query = 'SELECT * FROM oglas WHERE ad_title LIKE :search';
+		$stmt = $pdo->prepare($query);
+
+		#$stmt->execute(['search' => '%' . $searching_for . '%']);
+		$stmt->execute(['search'=>$search]);
+		#$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+		echo $row['ad_title'] . "<br>";
+		echo $row['ad_description'] . "<br>";
+
+}
+
+	}
+
+
 
 
 }
