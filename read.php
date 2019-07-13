@@ -56,27 +56,73 @@ if(isset($_POST['detail'])){
 	$sql_stmt->execute(['ad_id'=>$post_id]);
 	while($row = $sql_stmt->fetch(PDO::FETCH_ASSOC)){?>
 	<!-- Place them all 'Nicely' :) -->
-	<div id='ovaj-container'>
-	<p><?php
-	echo "Naziv posla: ".$row['ad_title'];
+
+	<head>
+	<title>WEB poslovi | Detalji o poslu</title>
+	<link rel="stylesheet" type="text/css" href="/style/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nudimo najbolji i najveći izbor poslova vezanih uz WEB Development. Tražite i objavljujte poslove kod nas.">
+    <meta name="keywords" content="posao,web dizajn,web razvoj,php,javascript,html,html5,php developer,javascript developer,frontend,backend,web,poslovi,dizajner,programer,jquery,developer,js,stranica,web stranica,web posao, oglas,oglasnik,oglas za posao,laptop,računalo,posao od kuće,rad od kuće,rad na daljinu">
+    <style type="text/css">
+    	#posao-container {
+    		margin: 9vh 14vw 3vh 14vw;
+    		width: 70vw;
+    		height: 80vh;
+    		padding: 1vh 1vw 1vh 1vw;
+    		background: rgba(51,51,153,0.5);
+    		border-radius: 100px;
+    	}
+
+    	#naslov-posla {
+    		font-family: "Courier New", Courier, monospace;
+    		text-transform: uppercase;
+    		font-weight: 700;
+    		font-size: 2vw;
+    		text-align: center;
+    	}
+
+    	#opis-posla {
+    		text-align: center;
+    		width: 60vw;
+    		height: 30vh;
+    		margin: -1vh 4vw 0 4vw;
+    		border-radius: 50px 50px 50px 0;
+    		padding: 2vh 1vw 0 1vw;
+    		background: rgba(51,51,153,0.5);
+    		font-family: "Courier New", Courier, monospace;
+    		font-size: 1vw;
+    		font-weight: 400;
+    	}
+
+    	#cijena-posla {
+    		text-align: center;
+    		width: 10vw;
+    		height: 5vh;
+    		margin: 0 1vw 0 4vw;
+    		border-radius: 0 0 30px 30px;
+    		padding: 1vh 1vw 0 1vw;
+    		background: rgba(51,51,153,0.5);
+    		font-family: "Courier New", Courier, monospace;
+    		font-size: 1vw;
+    		font-weight: 550;
+    	}
+    </style>
+	</head>
+
+	<div id='posao-container'>
+	<p id="naslov-posla"><?php
+	echo "".$row['ad_title'];
 	 ?></p>
-	<p><?php
-	echo "Opis posla: ".$row['ad_description'] . '<br>';
+	<p id="opis-posla"><?php
+	echo "".$row['ad_description'] . '<br>';
 	?></p>
-	<p><?php
-	echo "Cijena: ".$row['ad_price'] . '<br>';
+	<p id="cijena-posla"><?php
+	echo "Plaćanje: ".$row['ad_price'] . '<br>';
 	?></p>
-	<p><?php
+	<p id="tko-je-objavio"><?php
 	echo "Objavio: " . $row['username'] . '<br>';
 	?></p>
-	<p><?php
-	$file = $row['ad_file'];
 
-	echo"<a download href=".$row['ad_file'].">Download file</a>";
-
-	// echo "Prilozene datoteke:: " . "<a href=" . $row['ad_file'] . "download=''>";
-	#echo "Priložene datoteke: " . $row['ad_file'] . '<br>';
-	?></p>
 	<?php $post_desc = $row['ad_description'] ?>
 	<?php $poster_name = $row['username']?>
 	<p>
@@ -89,7 +135,7 @@ if(isset($_POST['detail'])){
 		<input type="hidden" name="post_id" value="<?php echo $post_id ?>">
 		<input type="hidden" name="desc" value="<?php echo $post_desc ?>">
 		<input type="hidden" name="post_name" value="<?php echo $poster_name ?>">
-		<input type='submit' class='btn-3d green' value='Kontaktiraj' name='Contact'>
+		<input type='submit' class='btn-3d green' value='Kontaktirajte  <?php echo $row['username'] ?>' name='Contact'>
 	</p>
 	</div>
 <?php

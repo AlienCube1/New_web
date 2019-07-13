@@ -67,7 +67,7 @@
 
                 ?>
                <div id="searchDiv">
-                    <form action="read.php" method="GET">
+                    <form action="update.php" method="post">
                         <input onfocusin="set_width()" onfocusout="unset_width()" type="text" name="query" placeholder="Pretraži poslove..." /><br>
                         <input id="search_submit" type="submit" value="Pretraži" />
                     </form>
@@ -138,7 +138,7 @@ echo "".$row['ad_title'];
 echo "".$row['ad_description'] . '<br>';
 ?></p>
 <p class="cijena-posla"><?php
-echo "Cijena: ".$row['ad_price'] . '<br>';
+echo "Plaćanje: ".$row['ad_price'] . '<br>';
 ?></p>
 <p class="objavio"><?php
 echo "Objavio: ".$row['username'] . '<br>';?></p>

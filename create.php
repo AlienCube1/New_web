@@ -65,8 +65,9 @@ function get_user($username){
 		return $row['id'];
 	}
 	}
-function insert_ad($name,$desc,$price,$file=null, $user_id, $username) {
+function insert_ad($name,$desc,$price,$file, $user_id, $username) {
 	global $pdo;
+	echo "im here.";
 	$adInsert = 'INSERT INTO oglas(ad_title, ad_description, ad_price, ad_file,ad_user_id, username) VALUES(:ad_title, :ad_description, :ad_price, :ad_file, :ad_user_id, :username)';
 	$adStmt = $pdo->prepare($adInsert);
 	$adStmt->execute(['ad_title'=>$name, 'ad_description'=>$desc, 'ad_price'=>$price, 'ad_file'=>$file, 'ad_user_id'=> $user_id, 'username'=>$username]);
@@ -74,6 +75,19 @@ function insert_ad($name,$desc,$price,$file=null, $user_id, $username) {
 		header("location: poslovi.php");
 	}
 
+}
+//// Function for uploading when no file is attached, I am only doing this because the upper funciton decide not to support
+//// Fileless and uploading with files attached, this language is making me mad.
+//// PHP 'ftw'
+//// DO NOT TOUCH PLEASE!!!!
+function fileless($name, $desc, $price, $user_id, $username) {
+	global $pdo;
+	$insert = 'INSERT INTO oglas(ad_title, ad_description, ad_price, ad_user_id, username) VALUES(:ad_title, :ad_description, :ad_price, :ad_user_id, :username)';
+	$insertStmt = $pdo->prepare($insert);
+	$insertStmt->execute(['ad_title'=>$name, 'ad_description'=>$desc, 'ad_price'=>$price, 'ad_user_id'=> $user_id, 'username'=>$username]);
+	if ($insertStmt == true) {
+		header("location: poslovi.php");
+	}
 }
 
 session_start();
@@ -91,33 +105,49 @@ if(isset($_POST['register'])) {
 		echo"Lozinke se ne podudaraju";
 	}
 }
+
 if(isset($_POST['submit_job'])) {
 	$ad_name = $_POST['ime_posla'];
 	$ad_desc = $_POST['opis_posla'];
 	$ad_price =$_POST['cijena_posla'];
 	$ad_user_id = get_user($user_name);
-
 	//// Allowed files
 	$total = count($_FILES['datoteke']['name']);
-
 	//// IF no files were found, upload null
-	if($total == 0) {
+	var_dump($_FILES['datoteke']['name']);
+	$bug_fix = $_FILES['datoteke']['name'];
+
+	if(filesize($bug_fix) < 1) {
 		echo "No Files found!";
-		insert_ad($ad_name, $ad_desc, $ad_price, $ad_user_id, $user_name);
+		fileless($ad_name, $ad_desc, $ad_price ,$ad_user_id, $user_name);
 			}
 
 	//// If a file was found, upload them all
 	else if ($total != 0){
-
 		for($i = 0; $i < $total; $i++){
-			$tpm_file_name = $_FILES['datoteke']['tmp_name'][$i];
-			var_dump($tpm_file_name);
-			insert_ad($ad_name, $ad_desc, $ad_price, $tpm_file_name, $ad_user_id, $user_name);
-			echo "Uploaded file number " . $i;
-	}
+			//// It uploads the tmp file
+			$tmpFilePath = $_FILES['datoteke']['tmp_name'][$i];
+			$file = $_FILES['datoteke']['name'];
+			if ($tmpFilePath !=""){
+				//// Get extension
+				$ext = pathinfo($tmpFilePath, PATHINFO_EXTENSION);
+				//// Get new file path
+				$newFilePath = "upload/" . $_FILES['datoteke']['name'][$i] . $ext;
+				$file = $newFilePath;
+				//// Move file, if successful, start function insert_ad
+				if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+					echo "Success";
+					insert_ad($ad_name, $ad_desc, $ad_price, $file, $ad_user_id, $user_name);
+				}
+			}
+
 		}
 
+	  }
 }
+
+
+
 
 //// Message sending and storing thing
 if(isset($_POST['send_msg'])){
